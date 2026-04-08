@@ -82,3 +82,15 @@ p {
     background-color: #bc5552;
     cursor: pointer;
 }
+
+#editBtn {
+    padding: 4px;
+    margin-left: 0.5rem;
+    border-radius: 6px;
+    width: 6rem;
+}
+
+#editBtn:hover {
+    background-color: #bc5552;
+    cursor: pointer;
+}

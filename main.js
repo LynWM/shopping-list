@@ -43,8 +43,39 @@ function renderItems() {
             renderItems();
         });
 
+        // EDIT BUTTON
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+
+        editBtn.addEventListener("click", function () {
+            const newName = prompt("Edit item name:", item.name);
+            const newPrice = prompt("Edit item price:", item.price);
+
+            if (newName !== null && newName.trim() !== "" &&
+                newPrice !== null && newPrice.trim() !== "") {
+
+                shoppingList[index].name = newName;
+                shoppingList[index].price = Number(newPrice);
+
+                saveToStorage();
+                renderItems();
+            }
+        });
+
+        //DELETE BUTTON
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+
+        deleteBtn.addEventListener("click", function () {
+            shoppingList.splice(index, 1); // remove item
+            saveToStorage();
+            renderItems();
+        });
+
         itemDiv.appendChild(itemText);
         itemDiv.appendChild(checkbox);
+        itemDiv.appendChild(editBtn);
+        itemDiv.appendChild(deleteBtn);
         listContainer.appendChild(itemDiv);
     });
 
@@ -63,7 +94,7 @@ addBtn.addEventListener("click", function () {
 
     const newItem = {
         name: itemName,
-        price: Number(itemPrice), // ✅ fix string issue
+        price: Number(itemPrice),
         purchased: false,
     };
 
